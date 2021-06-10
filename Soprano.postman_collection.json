@@ -1,0 +1,400 @@
+{
+	"info": {
+		"_postman_id": "eedddd9e-3b68-48b5-843a-9ca0f687a2cf",
+		"name": "Soprano",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Posts",
+			"item": [
+				{
+					"name": "Create post",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "test",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "test",
+									"type": "text"
+								},
+								{
+									"key": "images",
+									"type": "file",
+									"src": "/C:/Users/SMART/Downloads/WhatsApp Image 2021-06-03 at 11.12.08 AM.jpeg"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{BASE_URL}}post",
+							"host": [
+								"{{BASE_URL}}post"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "All posts",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}post?skip=0&limit=10",
+							"host": [
+								"{{BASE_URL}}post"
+							],
+							"query": [
+								{
+									"key": "skip",
+									"value": "0"
+								},
+								{
+									"key": "limit",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Post by Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}post/:id",
+							"host": [
+								"{{BASE_URL}}post"
+							],
+							"path": [
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "60c25ff9049abdd76158486d"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Post",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "hello1",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "world",
+									"type": "text"
+								},
+								{
+									"key": "images",
+									"type": "file",
+									"src": "/C:/Users/SMART/Downloads/2.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{BASE_URL}}post/:id",
+							"host": [
+								"{{BASE_URL}}post"
+							],
+							"path": [
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "60c25ff9049abdd76158486d"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Post",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}post/:id",
+							"host": [
+								"{{BASE_URL}}post"
+							],
+							"path": [
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "60c2603a049abdd76158486e"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Like Post",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}post/like/:id",
+							"host": [
+								"{{BASE_URL}}post"
+							],
+							"path": [
+								"like",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "60c25ff9049abdd76158486d"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Like Post",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "hello1",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "world",
+									"type": "text"
+								},
+								{
+									"key": "images",
+									"type": "file",
+									"src": "/C:/Users/SMART/Downloads/2.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{BASE_URL}}post/like/:id",
+							"host": [
+								"{{BASE_URL}}post"
+							],
+							"path": [
+								"like",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "60c25ff9049abdd76158486d"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Comment Post",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"comment\":\"Hello\",\r\n    \"date\": \"2021-06-10 18:54:49\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}post/comment/:id",
+							"host": [
+								"{{BASE_URL}}post"
+							],
+							"path": [
+								"comment",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "60c25ff9049abdd76158486d"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Comment Post",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"date\": \"2021-06-10 18:54:49\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}post/comment/:id",
+							"host": [
+								"{{BASE_URL}}post"
+							],
+							"path": [
+								"comment",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "60c25ff9049abdd76158486d"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MGMyNTFlMDkzMTFhZmFiMDUyYzY3YTciLCJuYW1lIjoiQWFzaGlzaCIsImVtYWlsIjoiYXNkZkBhc2RmLmNvbSIsImlhdCI6MTYyMzM1MTAxMTA0NywiZXhwIjoxNjIzMzU4Nzg3MDQ3fQ.AYVljDYfWeYGUi2w1WjO9QWJtjuFTrezJfnprOUy5S0",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Signup",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Aashish\",\r\n    \"email\": \"asdf@asdf.com\",\r\n    \"password\":\"asdf\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BASE_URL}}users",
+					"host": [
+						"{{BASE_URL}}users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"asdf@asdf.com\",\r\n    \"password\":\"asdf\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BASE_URL}}users/login",
+					"host": [
+						"{{BASE_URL}}users"
+					],
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "BASE_URL",
+			"value": "http://localhost:3000/"
+		}
+	]
+}
