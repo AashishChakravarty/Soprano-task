@@ -13,7 +13,7 @@
 
 ### Update DB Credentials
 
-`app/config/dbConnection.js`
+`config/dbConnection.js`
 
 ### run
 
