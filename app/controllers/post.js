@@ -1,17 +1,13 @@
 const post = require('../models/post');
-
-/*******************************************************************************************
-                
-                               Creat  useres posts
-
-********************************************************************************************/
+const upload = require('../helpers/upload');
 
 const create = (req, res) => {
+  const images = req.files.map(file => file.filename);
 
   const postData = {
-    title: req.userData.title,
+    title: req.body.title,
     description: req.body.description,
-    images: req.body.images,
+    images,
     likes: [],
     comments: [],
     created_by: req.userData._id,
@@ -35,8 +31,8 @@ const create = (req, res) => {
 };
 
 const posts = (req, res) => {
-  const skip = parseInt(req.params.skip) || 0;
-  const limit = parseInt(req.params.limit) || 20;
+  const skip = parseInt(req.query.skip) || 0;
+  const limit = parseInt(req.query.limit) || 20;
   post
     .find()
     .skip(skip)
@@ -103,11 +99,15 @@ const deletePost = (req, res) => {
 const updatePost = (req, res) => {
   const id = req.params.id;
   const userId = req.userData._id;
+  const images = req.files.map(file => file.filename);
 
-  const postData = {
-    title: req.userData.title,
+  let postData = {
+    title: req.body.title,
     description: req.body.description,
-    images: req.body.images
+  }
+
+  if (images.length) {
+    postData.images = images
   }
 
   post
@@ -171,7 +171,6 @@ const deletelikePost = (req, res) => {
     .findOneAndUpdate(
       { _id: id },
       { $pull: { likes: like } },
-      // { safe: true, upsert: true }
       { new: true }
     )
     .then((result) => {
@@ -195,7 +194,7 @@ const commentPost = (req, res) => {
   const comment = {
     userId: req.userData._id,
     comment: req.body.comment,
-    commented_at: req.body.date,
+    commented_at: req.body.date || new Date(),
   };
 
   post
@@ -223,13 +222,12 @@ const deleteCommentPost = (req, res) => {
   const id = req.params.id;
 
   const comment = {
-    commented_at: req.params.date,
+    commented_at: req.body.date,
   };
   post
     .findOneAndUpdate(
       { _id: id },
       { $pull: { comments: comment } },
-      // { safe: true, upsert: true }
       { new: true }
     )
     .then((result) => {
@@ -247,6 +245,20 @@ const deleteCommentPost = (req, res) => {
     });
 };
 
+const uploadFiles = (req, res, next) => {
+  const uploadImg = upload.array('images', 3);
+  uploadImg(req, res, function (err, some) {
+    if (err) {
+      return res.status(400).json({
+        status: false,
+        message: err.message,
+      });
+    } else {
+      return next();
+    }
+  })
+}
+
 module.exports = {
   create,
   posts,
@@ -256,5 +268,6 @@ module.exports = {
   likePost,
   deletelikePost,
   commentPost,
-  deleteCommentPost
+  deleteCommentPost,
+  uploadFiles
 };

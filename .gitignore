@@ -63,3 +63,5 @@ typings/
 !.elasticbeanstalk/*.cfg.yml
 !.elasticbeanstalk/*.global.yml
 
+#file upload
+upload/*

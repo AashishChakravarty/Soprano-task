@@ -1,10 +1,12 @@
+const upload = require('../helpers/upload');
+
 //NOTE SUB-ROUTING ROUTES
 var router = require('express').Router();
 
 module.exports = function () {
   const post = require('../controllers/post');
 
-  router.post('/', post.create);
+  router.post('/', post.uploadFiles, post.create);
 
   router.get('/', post.posts);
 
@@ -12,7 +14,7 @@ module.exports = function () {
 
   router.delete('/:id', post.deletePost);
 
-  router.put('/:id', post.updatePost);
+  router.put('/:id', post.uploadFiles, post.updatePost);
 
   router.put('/like/:id', post.likePost);
 

@@ -1,7 +1,5 @@
-//MAIN ROUTING
-//FROM HERE ALL THE ROUTES DIVIDED
 var router = require("express").Router();
-var jwt = require("jsonwebtoken");
+const { verifyToken } = require('../helpers/security');
 
 module.exports = function () {
   router.use("/users", require("./users.routes")());
